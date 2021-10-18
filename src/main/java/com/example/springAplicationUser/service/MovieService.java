@@ -1,7 +1,6 @@
 package com.example.springAplicationUser.service;
 
 import com.example.springAplicationUser.model.Movie;
-import com.example.springAplicationUser.model.User;
 import com.example.springAplicationUser.repository.MovieRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

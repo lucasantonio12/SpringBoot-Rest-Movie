@@ -17,6 +17,7 @@ public class User {
     Long id;
 
     String name;
+    @Column( unique = true)
     String username;
     String password;
     Boolean admin = false;
