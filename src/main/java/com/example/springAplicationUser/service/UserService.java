@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -19,9 +20,7 @@ public class UserService {
     public User saveUser(User user){
         return repository.saveAndFlush(user);
     }
-    public User getUserId(Long id){
-        return repository.getById(id);
-    }
+    public Optional<User> findByID(Long id){ return repository.findById(id);}
     public List<User> findByNameIgnoreCase(String name){
         return  repository.findByNameIgnoreCase(name);
     }

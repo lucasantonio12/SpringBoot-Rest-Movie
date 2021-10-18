@@ -8,13 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/movie")
 public class MovieControl {
     private MovieService service;
-    private UserService userService;
+
 
     @Autowired
     public void setService(MovieService service) {
@@ -22,25 +24,28 @@ public class MovieControl {
     }
 
     @PostMapping("/save")
-    public Movie save(@RequestBody Movie movie){
-        return service.saveMovie(movie);
+    public ResponseEntity<Movie> save(@RequestBody Movie movie) {
+        this.service.saveMovie(movie);
+        return ResponseEntity.created(URI.create("/movies/" + movie.getId())).build();
     }
 
     @GetMapping("/list")
-    public List<Movie> listAll(){
-        return service.getAll();
+    public List<Movie> listAll() {
+        return this.service.getAll();
     }
 
     @GetMapping("/title/{title}")
-    public  List<Movie> listTitle(@PathVariable("Tittle") String title){
-        return service.findByTitleIgnoreCase(title);
+    public List<Movie> listTitle(@PathVariable("title") String title) {
+        return this.service.findByTitleIgnoreCase(title);
     }
 
-    @GetMapping("/movie/{id}")
-    public  ResponseEntity<Movie> listMovieId(@PathVariable("id") Long id){
-        if(service.getMovieId(id) == null)
-           return ResponseEntity.notFound().build();
-       else
-           return  ResponseEntity.ok().body(service.getMovieId(id));
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> listMovieId(@PathVariable("id") Long id) {
+        Optional<Movie> movie = service.findById(id);
+        if (movie.isPresent())
+            return ResponseEntity.ok().body(movie.get());
+
+        return ResponseEntity.notFound().build();
     }
+
 }

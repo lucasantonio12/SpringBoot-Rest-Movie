@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -21,8 +22,8 @@ public class MovieService {
     public Movie saveMovie(Movie movie){
         return repository.saveAndFlush(movie);
     }
-    public Movie getMovieId(Long id){
-        return repository.getById(id);
+    public Optional<Movie> findById(Long id){
+        return repository.findById(id);
     }
     public List<Movie> findByTitleIgnoreCase(String name){
         return  repository.findByTitleIgnoreCase(name);
