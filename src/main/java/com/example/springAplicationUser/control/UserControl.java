@@ -29,8 +29,8 @@ public class UserControl {
     @PostMapping("/save")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        this.service.saveUser(user);
-        return ResponseEntity.created(URI.create("/users/" + user.getId())).build();
+        return ResponseEntity.ok(this.service.saveUser(user));
+
     }
 
     @GetMapping("/listUser")
@@ -56,7 +56,7 @@ public class UserControl {
     @GetMapping("/validPassword")
     public ResponseEntity<Boolean> validPassword(@RequestParam String login, @RequestParam String password) {
 
-        Optional<User> optionalUser = service.findBylogin(login);
+        Optional<User> optionalUser = service.findByLogin(login);
         if (optionalUser.isEmpty())
             return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
 
@@ -77,5 +77,7 @@ public class UserControl {
         }
         return ResponseEntity.notFound().build();
     }
+
+
 
 }

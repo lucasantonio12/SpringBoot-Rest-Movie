@@ -1,5 +1,6 @@
 package com.example.springAplicationUser.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class User {
     String name;
     @Column( unique = true)
     String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
     Boolean admin = false;
 
