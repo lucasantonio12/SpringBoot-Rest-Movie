@@ -6,6 +6,7 @@ import com.example.springAplicationUser.data.UserDate;
 import com.example.springAplicationUser.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @AllArgsConstructor
+@Data
 public class JwtFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
     public static final int TOKEN_EXPIRATION = 600_000;

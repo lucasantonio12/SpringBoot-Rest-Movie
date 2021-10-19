@@ -4,10 +4,12 @@ import com.example.springAplicationUser.data.UserDate;
 import com.example.springAplicationUser.model.User;
 import com.example.springAplicationUser.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Component
 public class UserService implements UserDetailsService {
     private UserRepository repository;
 

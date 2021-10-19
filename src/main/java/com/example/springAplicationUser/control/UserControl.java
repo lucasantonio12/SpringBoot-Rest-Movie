@@ -4,6 +4,7 @@ package com.example.springAplicationUser.control;
 import com.example.springAplicationUser.model.User;
 import com.example.springAplicationUser.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
+@Data
 public class UserControl {
     private UserService service;
     private PasswordEncoder encoder;
